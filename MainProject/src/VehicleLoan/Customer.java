@@ -1,13 +1,14 @@
 package VehicleLoan;
+import dao.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Customer{
 	
-	static ArrayList<String> userNameList=new ArrayList<String>();
-	static ArrayList<String> passWordList=new ArrayList<String>();
-	static int count=0;
+	//static ArrayList<String> userNameList=new ArrayList<String>();
+	//static ArrayList<String> passWordList=new ArrayList<String>();
+	//static int count=0;
 	private String name;
 	private String userName;
 	private String passWord;
@@ -54,8 +55,8 @@ public class Customer{
 			cust.name=nameOfCustomer;
 			cust.passWord=newPassWord;
 			cust.userName=newUserName;
-			userNameList.add(newUserName);
-			passWordList.add(newPassWord);
+			//userNameList.add(newUserName);
+			//passWordList.add(newPassWord);
 			Eligibilty obj1=new Eligibilty();
 			Application obj2=obj1.fillApplication(cust);
 			System.out.println(obj2.toString());
@@ -79,9 +80,13 @@ public class Customer{
 			String userName=scanner.nextLine();
 			System.out.println("Enter the PassWord :");
 			String passWord=scanner.nextLine();
-			if(userNameList.contains(userName)&&passWordList.contains(passWord))
+			LoanDAO loanDaoObj=new LoanDAOImplementation();
+			Loan loanUserCheck=loanDaoObj.selectLoanApplication(userName, passWord);
+			
+			if(loanUserCheck.getUserId()==userName&&loanUserCheck.getPassWord()==passWord)
 			{
-				System.out.println("You are Logged In Succesful :");
+				String nameOfUser=loanUserCheck.getName();
+				System.out.println(nameOfUser+" are Logged In Succesful :");
 				System.out.println("--------------------------");
 				Eligibilty obj1=new Eligibilty();
 				Application obj2=obj1.fillApplication(cust);

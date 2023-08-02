@@ -56,13 +56,12 @@ public class LoanDAOImplementation implements LoanDAO{
 		
 		ResultSet result = statement.executeQuery("SELECT * FROM LOAN WHERE USERID="+userName);
 		
-		//5. process teh result if any
+		Loan loanObj = new Loan();
 		if(result.next()) {
-			Loan loanObj = new Loan(); //blank object
 			
-			loanObj.setDepartmentNumber(result.getInt(1));
-			loanObj.setDepartmentLocation(result.getString(2));
-			loanObj.setDepartmentName(result.getString(3));
+			loanObj.setName(result.getString(1));
+			loanObj.setUserId(result.getString(2));
+			loanObj.setPassWord(result.getString(3));
 		}// TODO Auto-generated method stub
 		return loanObj;
 	}
@@ -81,8 +80,8 @@ public class LoanDAOImplementation implements LoanDAO{
 			while(result.next()) {
 				Loan loanObj = new Loan(); //blank object
 				
-				loanObj.setDepartmentNumber(result.getInt(1));
-				loanObj.setDepartmentLocation(result.getString(2));
+				loanObj.setName(result.getString(1));
+				loanObj.setUserId(result.getString(2));
 				loanObj.setDepartmentName(result.getString(3));
 				loanList.add(loanObj); // add this object to the LIST 
 			}
@@ -97,7 +96,6 @@ public class LoanDAOImplementation implements LoanDAO{
 	public void updateLoanApplication(Loan loan) {
 		// TODO Auto-generated method stub
 		
-	}
 
 	@Override
 	public void deleteLoanApplication(Loan loan) {
