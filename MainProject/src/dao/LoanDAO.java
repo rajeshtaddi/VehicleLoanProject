@@ -1,10 +1,10 @@
 package dao;
 import java.util.List;
 
-import VehicleLoan.*;
+import vehicle.*;
 public interface LoanDAO {
         public void insertLoanApplication(Loan loan);
-        public Loan selectLoanApplication(String userName,String Password);
+        public Loan selectLoanApplication(int appId);
         public List<Loan> selectLoanApplications();
         public void updateLoanApplication(Loan loan);
         public void deleteLoanApplication(Loan loan);
