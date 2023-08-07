@@ -4,7 +4,6 @@ import java.util.List;
 
 import dao.ScholarshipDAO;
 import dao.ScholarshipDAOImplementation;
-import entities.Bank;
 import entities.Scholarship;
 
 public class ScholarshipServiceImplementation implements ScholarshipService {
